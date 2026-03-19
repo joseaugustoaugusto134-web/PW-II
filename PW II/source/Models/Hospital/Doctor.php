@@ -10,7 +10,7 @@ class Doctor extends User
     private $crm;
     private $speciality;
 
-    public function __construct(string $crm = null, string $speciality = null) 
+    public function __construct(string $crm = null, string $speciality = null, string $name = null, string $email = null, int $id = null, string $password = null, string $photo = null) 
     {
         parent::__construct($name, $email, $id, $password, $photo);
         $this->crm = $crm;
@@ -40,8 +40,8 @@ class Doctor extends User
     public function show()
     {
         echo "Médico: {$this->id} - Nome: {$this->name}<br>";
-        echo "Email: {$this->email}";
-        echo "CRM: {$this->crm}";
-        echo "Especialidade: {$this->speciality}";
+        echo "Email: {$this->email}<br>";
+        echo "CRM: {$this->crm}<br>";
+        echo "Especialidade: {$this->speciality}<br>";
     }
 }
