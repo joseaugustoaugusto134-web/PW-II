@@ -89,13 +89,13 @@ class Bhaskara
             }
         else if($this->discriminant==0)
             {
-                $this->root1 = (-$this->b + sqrt($this->discriminant));
+                $this->root1 = (-$this->b + sqrt($this->discriminant)) /(2 * $this->a);
                 $this->root2 = $this->root1;
             }
         else if($this->discriminant>0)
             {
-                $this->root1 = (-$this->b + sqrt($this->discriminant)) /2 * $this->a;
-                $this->root2 = (-$this->b + sqrt($this->discriminant)) /2 * $this->a;
+                $this->root1 = (-$this->b + sqrt($this->discriminant)) /(2 * $this->a);
+                $this->root2 = (-$this->b - sqrt($this->discriminant)) /(2 * $this->a);
             }
     }
 
@@ -105,5 +105,8 @@ class Bhaskara
         echo "Coeficiente a (Coefficient a): {$this->a}<br>";
         echo "Coeficiente b (Coefficient b): {$this->b}<br>";
         echo "Coeficiente c (Coefficient c): {$this->c}<br>";
+        echo "Discriminante (Discriminant) Δ: {$this->discriminant}<br>";
+        echo "Raiz 1 (Root 1): {$this->root1}<br>";
+        echo "Raiz 2 (Root 2): {$this->root2}<br>";
     }
 }
