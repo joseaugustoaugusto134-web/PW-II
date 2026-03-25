@@ -36,12 +36,12 @@ class PythagoreanTheorem
 
     public function getHypothenuse(): ?float
     {
-        return $this->hypothenuse;
+        return $this->hypotenuse;
     }
 
     public function setHypothenuse(float $hypotenuse): void
     {
-        $this->hypothnuse = $hypotenuse;
+        $this->hypotenuse = $hypotenuse;
     }
 
     public function calculate() : void
