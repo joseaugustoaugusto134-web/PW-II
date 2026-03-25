@@ -34,12 +34,12 @@ class PythagoreanTheorem
         $this->cathetusB = $cathetusB;
     }
 
-    public function getHypothenuse(): ?float
+    public function getHypotenuse(): ?float
     {
         return $this->hypotenuse;
     }
 
-    public function setHypothenuse(float $hypotenuse): void
+    public function setHypotenuse(float $hypotenuse): void
     {
         $this->hypotenuse = $hypotenuse;
     }
