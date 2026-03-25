@@ -30,7 +30,7 @@ class Bhaskara
 
     public function getB(): ?float
     {
-        return $this->B;
+        return $this->b;
     }
 
     public function setB(float $b): void
