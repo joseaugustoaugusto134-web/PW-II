@@ -15,23 +15,23 @@ class Manager extends Employee
 
     public function getBonus(): ?float
     {
-        return $this->bonus = $bonus;
+        return $this->bonus;
     }
 
-    public function setBonus(): void
+    public function setBonus(float $bonus): void
     {
         $this->bonus = $bonus;
     }
 
     public function calculateSalary(): float
     {
-        return ($this->getSalary()) + ($this->bonus);
+        return (parent::calculateSalary()) + ($this->bonus);
     }
 
     public function show(): void
     {
         echo "Gerente: {$this->getId()} - Nome: {$this->getName()}<br>";
-        echo "Email: {$this->getName()}<br>";
+        echo "Email: {$this->getEmail()}<br>";
         echo "Horas Trabalhadas: {$this->getHoursWorked()}<br>";
         echo "Valor da Hora: {$this->getHourValue()}<br>";
         echo "Salário Base: {$this->getSalary()}<br>";
