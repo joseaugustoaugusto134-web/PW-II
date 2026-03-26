@@ -50,7 +50,8 @@ class Employee extends User
 
     public function calculateSalary(): float
     {
-        return $this->salary = $this->hoursWorked * $this->hourValue;
+        $this->salary = $this->hoursWorked * $this->hourValue;
+        return $this->salary;
     }
 
     public function show(): void
@@ -59,7 +60,6 @@ class Employee extends User
         echo "Email: {$this->getEmail()}<br>";
         echo "Horas Trabalhadas: {$this->hoursWorked}<br>";
         echo "Valor da Hora: {$this->hourValue}<br>";
-        echo "Salário: {$this->salary}<br>";
-    }
-    
+        echo "Salário: " . number_format($this->salary, 2, ",", ".") . "<br>";
+    }   
 }
