@@ -7,6 +7,7 @@ class Seller extends Employee
 {
     private $totalSales;
 
+
     public function __construct(float $totalSales = null, float $hoursWorked = null, float $hourValue = null, float $salary=null, string $name = null, string $email = null, int $id = null)
     {
         parent::__construct($hoursWorked, $hourValue, $salary, $name, $email, $id);
@@ -18,24 +19,25 @@ class Seller extends Employee
         return $this->totalSales;
     }
 
-    public function setTotalSales(): void
+    public function setTotalSales(float $totalSales): void
     {
         $this->totalSales = $totalSales;
     }
 
-    public function calculateCommission(): ?float
+    public function calculateCommission(): float
     {
         return $this->totalSales * (10/100);
     }
 
-    public function calculateSalary(): ?float
+    public function calculateSalary(): float
     {
-        return ($this->salary) + ($this->totalSales);
+        $baseSalary = parent::calculateSalary();
+        return ($baseSalary) + ($this->calculateCommission());
     }
 
     public function show(): void
     {
-        echo "Vendedor: {$this->getId()} - Nome: {$this->getName}<br>";
+        echo "Vendedor: {$this->getId()} - Nome: {$this->getName()}<br>";
         echo "Email: {$this->getEmail()}<br>";
         echo "Horas Trabalhadas: {$this->getHoursWorked()}<br>";
         echo "Valor da Hora: {$this->getHourValue()}<br>";
