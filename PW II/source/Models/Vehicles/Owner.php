@@ -1,6 +1,6 @@
 <?php
 
-namespace source\Models\Vehicle;
+namespace source\Models\Vehicles;
 
 class Owner
 {
