@@ -82,7 +82,9 @@ class Vehicle
     }
 
     public function calculateTax(): float
-    {}
+    {
+        return 0;
+    }
 
     public function show(): void
     {
