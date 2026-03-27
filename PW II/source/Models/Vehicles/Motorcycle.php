@@ -30,7 +30,7 @@ class Motorcycle extends Vehicle
 
     public function show(): void
     {
-        echo parent::show() . "
+        echo parent::show() . "<br>
         Cilindradas: {$this->displacement}CC<br>
         Imposto (5%): {$this->calculateTax()}<br>
         Proprietário: {$this->getOwner()->getName()}<br>
