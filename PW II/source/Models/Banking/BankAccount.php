@@ -94,12 +94,12 @@ class BankAccount
         }
     }
 
-    public function withdraw(float $amount, string $pin, string $description = 'Saldo'): bool
+    public function withdraw(float $amount, string $pin, string $description = 'Saque'): bool
     {
-        if($this->validatePin($pin) && $amount > 0 && $amount < $this->balance)
+        if($this->validatePin($pin) && $amount > 0 && $amount <= $this->balance)
         {
             $this->balance -= $amount;
-            $transactions[] = $description;
+            $this->transactions[] = $description;
             return true;    
         }
         else
