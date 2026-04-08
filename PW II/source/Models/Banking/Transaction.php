@@ -9,12 +9,12 @@ class Transaction
     private ?string $description;
     private ?string $createdAt;
 
-    public function __construct($type = null, $amount = null, $description = null, $createdAt = null)
+    public function __construct($type = null, $amount = null, $description = null)
     {
         $this->type = $type;
         $this->amount = $amount;
         $this->description = $description;
-        $this->createdAt = date('Y-m-d h:i:s');
+        $this->createdAt = date('Y-m-d H:i:s');
     }
 
     public function getType(): ?string
