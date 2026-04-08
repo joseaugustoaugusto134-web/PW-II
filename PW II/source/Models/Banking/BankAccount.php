@@ -11,7 +11,7 @@ class BankAccount
     private ?string $pin;
     private $transactions = [];
 
-    public function __construct($id = null, $ownerName = null, $accountNumber = null, $balance = null, $pin = null)
+    public function __construct($id = null, $ownerName = null, $accountNumber = null, $pin = null)
     {
         $this->id = $id;
         $this->ownerName = $ownerName;
