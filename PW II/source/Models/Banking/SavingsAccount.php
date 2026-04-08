@@ -37,11 +37,11 @@ class SavingsAccount extends BankAccount
 
     public function applyYield(): float
     {
-    $yield = ($this->getBalance() * $this->yieldRate) / 100;
+        $yield = ($this->getBalance() * $this->yieldRate) / 100;
 
-    parent::deposit($yield, 'Rendimento');
+        parent::deposit($yield, 'Rendimento');
 
-    $this->lastYieldDate = date('Y-m-d');
+        $this->lastYieldDate = date('Y-m-d');
 
     return $yield;
     }
