@@ -29,6 +29,8 @@ $route->get("/hello", "Api:hello");
 $route->get("/products/list", "Products:productsList");
 $route->get("/users/list", "Users:usersList");
 $route->get("/productsCategories/list", "ProductsCategories:productsCategoriesList");
+$route->get("/products/list/{productId}", "Products:productsListById");
+$route->get("/productsCategories/list/{categoryId}", "ProductsCategories:productsCategoriesListById");
 
 $route->dispatch();
 
