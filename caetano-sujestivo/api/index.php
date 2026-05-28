@@ -24,19 +24,30 @@ use CoffeeCode\Router\Router;
 $route = new Router(url("api"),":");
 
 $route->namespace("Source\Controller");
-// localhost/acme-3am/api/hello
-$route->get("/hello", "Api:hello");
-$route->get("/products/list", "Products:productsList");
-$route->get("/users/list", "Users:usersList");
-$route->get("/productsCategories/list", "ProductsCategories:productsCategoriesList");
-$route->get("/products/list/{productId}", "Products:productsListById");
-$route->get("/productsCategories/list/{categoryId}", "ProductsCategories:productsCategoriesListById");
-$route->post("/products", "Products:insert");
-$route->post("/categories-products", "ProductsCategories:insert");
-$route->get("/faqs-categories/list", "Faqs\FaqsCategories:faqsCategoriesList");
-$route->get("/faqs-categories/list/{categoryId}", "Faqs\FaqsCategories:faqsCategoriesListById");
-$route->get("/faqs/list/{faqId}", "Faqs\Faqs:FaqsListById");
-$route->post("/faqs-categories", "Faqs\FaqsCategories:insert");
+
+// Início - Exercícios - Desafios
+$route->group("/products");
+$route->get("/list/{product_id}","Products:listById"); // select by id
+$route->get("/list","Products:listAll"); // select all
+$route->get("/list/paginator/{page}/{per_page}","Products:listPaginator"); // select all
+$route->post("/","Products:insert"); // insert
+$route->put("/{product_id}","Products:update"); // update
+$route->delete("/{product_id}","Products:delete"); // update
+$route->group(null);
+// Fim - Exercícios - Desafios
+
+$route->group("/faqs");
+$route->get("/list", "faqs\Faqs:listAll");
+$route->get("/list/{faqId}", "faqs\Faqs:listById");
+$route->post("/", "faqs\Faqs:insert");
+$route->put("/{faqId}", "faqs\Faqs:update");
+$route->group(null);
+$route->group("/faqs-categories");
+$route->get("/list", "faqs\FaqsCategories:listAll");
+$route->get("/list/{categoryId}", "faqs\FaqsCategories:listById");
+$route->post("/", "faqs\FaqsCategories:insert");
+$route->group(null);
+
 
 $route->dispatch();
 
