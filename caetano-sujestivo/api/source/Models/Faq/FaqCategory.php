@@ -1,18 +1,26 @@
 <?php
 
+
 namespace source\Models\Faq;
 
+use Source\Core\Model;
 use Source\Core\Connect;
 
-class FaqCategory
+class FaqCategory extends Model
 {
     private ?int $id;
     private ?string $name;
+    private ?int $active;
 
     public function __construct(?int $id = null, ?string $name = null)
     {
         $this->id = $id;
         $this->name = $name;
+        $this->active = $active;
+
+        $this->table = 'faqs_categories';
+        $this->primaryKey = 'id';
+        $this->fillable = ['faqsCategoryId', 'name'];
     }
 
     public function getId(): ?int
@@ -35,31 +43,24 @@ class FaqCategory
         $this->name = $name;
     }
 
-    public function listAll()
+    public function getActive(): ?int
     {
-        $query = "SELECT * FROM faqs_categories";
-        $stmt = Connect::getInstance()->query($query);
-        return $stmt->fetchAll();
+        return $this->active;
     }
 
-    public function listById (int $id): object | false
+    public function setActive(int $active): void
     {
-        $query = "SELECT * FROM faqs_categories WHERE id = :id";
-        $stmt = Connect::getInstance()->prepare($query);
-        $stmt->bindParam(":id", $id);
-        $stmt->execute();
-        return $stmt->fetch();
+        $this->active = $active;
     }
 
-    public function insert (): bool
-    {
-        $query = "INSERT INTO faqs_categories VALUES (NULL, :name)";
-        $stmt = Connect::getInstance()->prepare($query);
-        $stmt->bindParam(":name", $this->name);
-        if(!$stmt->execute()) {
-            return false;
-        }
-        $this->id = Connect::getInstance()->lastInsertId();
-        return true;
-    }
+   // public function listById (int $id): object | false
+   // {
+   //     $query = "SELECT * FROM faqs WHERE id = :id";
+   //     $stmt = Connect::getInstance()->prepare($query);
+   //     $stmt->bindParam(":id", $id);
+   //     $stmt->execute();
+   //     return $stmt->fetch();
+   // }
+
+
 }
