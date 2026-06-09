@@ -86,13 +86,14 @@ class Faqs extends Api
 
     public function update (array $data): void
     {
-       
-        
+       $json = json_decode(file_get_contents("php://input"), true);
+       $data = array_merge($data, $json ?? []);
+
         if(!filter_var($data["faqId"], FILTER_VALIDATE_INT)) {
             $this->call(
                 400,
                 "bad_request",
-                "ID do FAQ é obrigatório e deve ser um número inteiro",
+                "ID da FAQ é obrigatório e deve ser um número inteiro",
                 "error"
             )->back();
             return;
@@ -102,7 +103,7 @@ class Faqs extends Api
             $this->call(
                 400,
                 "bad_request",
-                "ID inválido ou campos obrigatórios ausentes",
+                "Os campos question, answer e faqs_category_id são obrigatórios",
                 "error"
             )->back();
             return;
@@ -114,6 +115,7 @@ class Faqs extends Api
             $data["question"],
             $data["answer"]
         );
+      
 
         if(!$faq->updateById($data["faqId"])){
             $this->call(500, "internal_server_error", $faq->getErrorMessage(), "error")->back();
@@ -121,13 +123,13 @@ class Faqs extends Api
         }
         $response = [
             "id" => $faq->getId(),
-            "faqs_category_id" => $faq->getFaqsCategoryId(),
+            "faqsCategoryId" => $faq->getFaqsCategoryId(),
             "question" => $faq->getQuestion(),
             "answer" => $faq->getAnswer(),
             "active" => $faq->getActive()
         ];
 
-        $this->call(200,"success","Faq atualizado com sucesso","success")->back($response);
+        $this->call(200,"success","FAQ atualizada com sucesso","success")->back($response);
     }
 
     public function validate (array $data): bool
@@ -139,4 +141,42 @@ class Faqs extends Api
         }
         return true;
     }
+
+    public function delete(array $data): void
+    {
+    
+        $json = json_decode(file_get_contents("php://input"), true);
+        $data = array_merge($data, $json ?? []);
+
+    
+        if (!isset($data["faqId"]) || !filter_var($data["faqId"], FILTER_VALIDATE_INT)) {
+            $this->call(
+                400,
+                "bad_request",
+                "ID inválido",
+                "error"
+            )->back();
+            return;
+        }
+
+        $faq = new Faq();
+
+    
+        if (!$faq->softDeleteById($data["faqId"])) {
+            $this->call(
+                404,
+                "not_found",
+                $faq->getErrorMessage(),
+                "error"
+            )->back();
+            return;
+    }
+
+        $this->call(
+            200,
+            "success",
+            "FAQ desativada com sucesso",
+            "success"
+        )->back();
+}
 }
