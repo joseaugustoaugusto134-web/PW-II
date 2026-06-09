@@ -26,11 +26,14 @@ $route = new Router(url("api"),":");
 $route->namespace("Source\Controller");
 // localhost/acme-3am/api/hello
 $route->get("/hello", "Api:hello");
-$route->get("/products/list", "Products:productsList");
-$route->get("/users/list", "Users:usersList");
-$route->get("/productsCategories/list", "ProductsCategories:productsCategoriesList");
-$route->get("/products/list/{productId}", "Products:productsListById");
-$route->get("/productsCategories/list/{categoryId}", "ProductsCategories:productsCategoriesListById");
+
+$route->group("/Flocks");
+$route->post("/", "Flocks:insert");
+$route->group(null);
+
+$route->group("/Sheeps");
+$route->post("/", "Sheeps:insert");
+$route->group(null);
 
 $route->dispatch();
 
