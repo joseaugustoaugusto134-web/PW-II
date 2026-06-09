@@ -27,6 +27,18 @@ $route->namespace("Source\Controller");
 // localhost/acme-3am/api/hello
 $route->get("/hello", "Api:hello");
 
+$route->group("/faqs");
+$route->get("/list", "faqs\Faqs:listAll");
+$route->get("/list/{faqId}", "faqs\Faqs:listById");
+$route->post("/", "faqs\Faqs:insert");
+$route->put("/{faqId}", "faqs\Faqs:update");
+$route->group(null);
+$route->group("/faqs-categories");
+$route->get("/list", "faqs\FaqsCategories:listAll");
+$route->get("/list/{categoryId}", "faqs\FaqsCategories:listById");
+$route->post("/", "faqs\FaqsCategories:insert");
+$route->group(null);
+
 $route->group("/Flocks");
 $route->post("/", "Flocks:insert");
 $route->group(null);
